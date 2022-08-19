@@ -9,11 +9,11 @@
 .grid div {
     height: 40px;
     width: 40px;
-
 }
 
 .bomb {
     background-color: darkorange;
+    border-radius: 50px;
 }
 
 .start {
@@ -21,3 +21,10 @@
     padding: 15px;
     border-radius: 10px;
 }
+
+.checked {
+    background-color: rgb(54, 228, 54);
+    border-bottom-left-radius: 100%;
+    border-top-right-radius: 100%;
+}
+

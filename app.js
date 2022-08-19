@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
             square.classList.add(shuffleArray[i]);
             grid.appendChild(square);
             squares.push(square);
+
+            square.addEventListener('click', function(e) {
+                click(square);
+
+            });
         }
         for (let i = 0; i < squares.length; i++) {
             let total = 0;
@@ -29,17 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const rightEdge = (i % width === width - 1);
             
             if (squares[i].classList.contains('valid')) {
-                if (i > 0 && !leftEdge && squares[i - 1].classList.contains('bomb')) total ++;
-                if (i > 14 && !rightEdge && squares[i + 1 - width].classList.contains('bomb')) total ++;
+                if (i > 0 && !leftEdge && squares[i - 1].classList.contains('bomb')) total++;
+                if (i > 14 && !rightEdge && squares[i + 1 - width].classList.contains('bomb')) total++;
+                if (i > 15 && squares[i - width].classList.contains('bomb')) total++;
+                if (i > 16 && !leftEdge && squares[i - 1 - width].classList.contains('bomb')) total++;
+                if (i < 223 && !rightEdge && squares[i + 1].classList.contains('bomb')) total++;
+                if (i < 210 && !leftEdge && squares[i - 1 + width].classList.contains('bomb')) total++;
+                if (i < 208 && !rightEdge && squares[i + 1 + width].classList.contains('bomb')) total++;
+                if (i < 209 && squares[i + width].classList.contains('bomb')) total++;
+
 
                 squares[i].setAttribute('data', total);
             }
         }
-
-
-
-
-
 
 
         newGame.addEventListener('click', () => {
@@ -47,15 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
         
         });
 
-
-
-
-
-
-
-
     }
     createboard();
+
+    // click on square
+    function click(square) {
+        if (square.classList.contains('bomb')) {
+            console.log('Game Over');
+        } 
+        else {
+            let total = square.getAttribute('data');
+            if (total !== 0) {
+                square.classList.add('checked');
+                square.innerHTML = total;
+                return;
+            }
+            square.classList.add('checked');
+
+        }
+    }
 
 
 
