@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // shuffled game with bombs
         const bombsArray = Array(bombAmount).fill('bomb');
-        const emptyArray = Array(width * width - bombAmount).fill('vaild');
+        const emptyArray = Array(width * width - bombAmount).fill('valid');
         const gameArray = emptyArray.concat(bombsArray);
         const shuffleArray = gameArray.sort(() => Math.random() - 0.5);
 
@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let total = 0;
             const leftEdge = (i % width === 0);
             const rightEdge = (i % width === width - 1);
-
+            
             if (squares[i].classList.contains('valid')) {
                 if (i > 0 && !leftEdge && squares[i - 1].classList.contains('bomb')) total ++;
                 if (i > 14 && !rightEdge && squares[i + 1 - width].classList.contains('bomb')) total ++;
+                
+                squares[i].setAttribute('data', total);
             }
         }
-
-
 
 
 
