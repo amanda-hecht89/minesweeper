@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = 15;
     // let height = 20;
     let bombAmount = 25;
+    const newGame = document.querySelector('.start');
 
     let squares = [];
 
@@ -30,10 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (squares[i].classList.contains('valid')) {
                 if (i > 0 && !leftEdge && squares[i - 1].classList.contains('bomb')) total ++;
                 if (i > 14 && !rightEdge && squares[i + 1 - width].classList.contains('bomb')) total ++;
-                
+
                 squares[i].setAttribute('data', total);
             }
         }
+
+
+
+
+
+
+
+        newGame.addEventListener('click', () => {
+            window.location.reload();
+        
+        });
 
 
 
