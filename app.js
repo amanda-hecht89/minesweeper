@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const grid = document.querySelector('.grid');
     let width = 15;
-    // let height = 20;
     let bombAmount = 25;
     const newGame = document.querySelector('.start');
+    let gameOver = false;
+
+
 
     let squares = [];
 
@@ -38,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (i > 14 && !rightEdge && squares[i + 1 - width].classList.contains('bomb')) total++;
                 if (i > 15 && squares[i - width].classList.contains('bomb')) total++;
                 if (i > 16 && !leftEdge && squares[i - 1 - width].classList.contains('bomb')) total++;
-                if (i < 223 && !rightEdge && squares[i + 1].classList.contains('bomb')) total++;
-                if (i < 210 && !leftEdge && squares[i - 1 + width].classList.contains('bomb')) total++;
                 if (i < 208 && !rightEdge && squares[i + 1 + width].classList.contains('bomb')) total++;
                 if (i < 209 && squares[i + width].classList.contains('bomb')) total++;
+                if (i < 210 && !leftEdge && squares[i - 1 + width].classList.contains('bomb')) total++;
+                if (i < 223 && !rightEdge && squares[i + 1].classList.contains('bomb')) total++;
 
 
                 squares[i].setAttribute('data', total);
@@ -59,23 +61,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // click on square
     function click(square) {
+        let currentId = square.id;
+        if (gameOver) return;
+        if (square.classList.contains('checked')) return;
         if (square.classList.contains('bomb')) {
             console.log('Game Over');
         } 
         else {
-            let total = square.getAttribute('data');
+            let total = parseInt(square.getAttribute('data'));
             if (total !== 0) {
                 square.classList.add('checked');
                 square.innerHTML = total;
                 return;
+            } else {
+                square.classList.add('checked');
+                checkSquare(square, currentId);
             }
-            square.classList.add('checked');
-
         }
+        square.classList.add('checked');
     }
-
-
-
+// recursion
+    function checkSquare(square, currentId) {
+        const leftEdge = (currentId % width === 0);
+        const rightEdge = (currentId % width === width - 1);
+            
+        setTimeout(() => {
+            if (currentId > 0 && !leftEdge) {
+                const newId = squares[parseInt(currentId) - 1].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId > 14 && !rightEdge) {
+                const newId = squares[parseInt(currentId) + 1 - width].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId > 15) {
+                const newId = squares[parseInt(currentId) - width].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId > 16 && !leftEdge) {
+                const newId = squares[parseInt(currentId) - 1 - width].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId < 223 && !rightEdge) {
+                const newId = squares[parseInt(currentId) + 1].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId < 210 && !leftEdge) {
+                const newId = squares[parseInt(currentId) - 1 + width].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId < 208 && !rightEdge) {
+                const newId = squares[parseInt(currentId) + 1 + width].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+            if (currentId < 209) {
+                const newId = squares[parseInt(currentId) + width].id;
+                const newSquare = document.getElementById(newId);
+                click(newSquare);
+            }
+        }, 10);
+        
+        
+    }
+    
 
 
 
