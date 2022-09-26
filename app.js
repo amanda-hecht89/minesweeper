@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //gameover
     function isGameOver(square) {
-        result.innerHTML = 'BOOM! Game Over!'
+        result.innerHTML = 'BOOM! Game Over!';
         gameOver = true;
 
         //show all bombs when end of game

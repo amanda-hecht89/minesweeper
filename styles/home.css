@@ -6,6 +6,11 @@
     background-color: rgb(152, 166, 180);
 }
 
+h1, h2 {
+    display: flex;
+    justify-content: center;
+}
+
 .grid div {
     height: 40px;
     width: 40px;
@@ -17,10 +22,11 @@
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
+    background-color: white;
 }
 
 .checked {
-    background-color: rgb(54, 228, 54);
+    background-color: rgb(172, 33, 18);
 }
 
 #result {
@@ -28,11 +34,11 @@
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
-    outline: 1px solid black
+
 }
 
 .flagss {
-    outline: 1px solid black;
+    outline: 2px solid black;
     border-radius: 10px;
     margin-bottom: 10px;
     font-size: 20px;
@@ -44,5 +50,26 @@
 .above {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
+.flag {
+    display: flex;
+    justify-content: center;
+    font-size: 25px
+}
+
+.bomb  {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+}
+.resultss {
+    display: flex;
+    justify-content: center;
+}
