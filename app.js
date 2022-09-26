@@ -6,12 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const newGame = document.querySelector('.start');
     let gameOver = false;
     let flags = 0;
+    const flagsLeft = document.querySelector('#flagsLeft');
+    const result = document.querySelector('#result');
 
 
 
     let squares = [];
 
     function createboard() {
+        flagsLeft.innerHTML = bombAmount;
 
         // shuffled game with bombs
         const bombsArray = Array(bombAmount).fill('bomb');
@@ -70,11 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 square.classList.add('flag');
                 square.innerHTML = '🚩';
                 flags ++;
+                flagsLeft.innerHTML = bombAmount - flags;
                 checkWin();
             } else {
                 square.classList.remove('flag');
                 square.innerHTML = '';
                 flags --;
+                flagsLeft.innerHTML = bombAmount - flags;
             }
 
         } 
@@ -152,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //gameover
     function isGameOver(square) {
-        console.log('Boom! Game Over');
+        result.innerHTML = 'BOOM! Game Over!'
         gameOver = true;
 
         //show all bombs when end of game
@@ -170,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')){
                 matches ++;
             } if (matches === bombAmount) {
-                console.log('WIN');
+                result.innerHTML = 'YOU WIN!';
                 gameOver = true;
             }
         }

@@ -9,11 +9,7 @@
 .grid div {
     height: 40px;
     width: 40px;
-}
-
-.bomb {
-    background-color: darkorange;
-    border-radius: 50px;
+    outline: 1px solid black;
 }
 
 .start {
@@ -21,10 +17,32 @@
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
-
 }
 
 .checked {
     background-color: rgb(54, 228, 54);
+}
+
+#result {
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    outline: 1px solid black
+}
+
+.flagss {
+    outline: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.above {
+    display: flex;
+    flex-direction: row;
 }
 
