@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //click
             square.addEventListener('click', function(e) {
+                e.preventDefault();
                 click(square);
             });
 
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //gameover
-    function isGameOver(square) {
+    function isGameOver() {
         result.innerHTML = 'BOOM! Game Over!';
         gameOver = true;
 
